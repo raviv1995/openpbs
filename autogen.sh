@@ -37,10 +37,11 @@
 # trademark licensing policies.
 #
 
+echo "Auto solution"
+
 if test -d ./src/resmom; then
 	echo "Generating configure script and Makefile templates."
 	exec autoreconf --force --install -I m4 $*
 else
 	echo "Execute `basename $0` from the top level distribution directory."
 fi
-
