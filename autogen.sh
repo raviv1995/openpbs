@@ -35,12 +35,9 @@
 # Use of Altair’s trademarks, including but not limited to "PBS™",
 # "PBS Professional®", and "PBS Pro™" and Altair’s logos is subject to Altair's
 # trademark licensing policies.
-#
-
-echo "Auto solution"
 
 if test -d ./src/resmom; then
-	echo "Generating configure script and Makefile templates."
+	echo "Generating configure Script and Makefile templates."
 	exec autoreconf --force --install -I m4 $*
 else
 	echo "Execute `basename $0` from the top level distribution directory."
