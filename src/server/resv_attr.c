@@ -84,6 +84,7 @@ int     index_atrJob_to_atrResv [][2] = {
         {RESV_ATR_hopcount   , JOB_ATR_hopcount},
         {RESV_ATR_priority   , JOB_ATR_priority},
         {RESV_ATR_UNKN       , JOB_ATR_UNKN},
+        {RESV_ATR_project    , JOB_ATR_project},
         {RESV_ATR_LAST       , JOB_ATR_LAST}
 };
 

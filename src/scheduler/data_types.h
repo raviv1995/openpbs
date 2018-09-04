@@ -659,6 +659,7 @@ struct resv_info
 	enum resv_states resv_substate;			/* reservation substate */
 	queue_info 	 *resv_queue;			/* general resv: queue which is owned by resv */
 	node_info 	 **resv_nodes;			/* node universe for reservation */
+	char 		*project; 				/* project for reservation */
 };
 
 /* resource reservation - used for both jobs and advanced reservations */

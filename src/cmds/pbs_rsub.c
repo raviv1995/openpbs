@@ -102,7 +102,7 @@ process_opts(int argc, char **argv, struct attrl **attrp, char *dest)
 	char* temp_apvalue = NULL;
 #endif
 
-	while ((c = getopt(argc, argv, "D:E:I:l:m:M:N:q:r:R:u:U:g:G:H:W:-:")) != EOF) {
+	while ((c = getopt(argc, argv, "D:E:I:l:m:M:N:P:q:r:R:u:U:g:G:H:W:-:")) != EOF) {
 		switch (c) {
 			case 'D':
 				sprintf(dur_buf, "walltime=%s", optarg);
@@ -257,13 +257,16 @@ process_opts(int argc, char **argv, struct attrl **attrp, char *dest)
 					errflg++;
 				}
 				break;
+			
+			case 'P':
+				set_attr(&attrib, ATTR_project, optarg);
+				break;
 
 			case '-':
 				if (strcmp(optarg, "hosts") == 0)
 					is_maintenance_resv = 1;
 				else
 					errflg++;
-				break;
 
 			default:
 				/* pbs_rsub option not recognized */
@@ -628,6 +631,8 @@ handle_attribute_errors(struct ecl_attribute_errors *err_list)
 			opt="U";
 		else if (strcmp(attribute->name, ATTR_convert)==0)
 			opt="W";
+		else if (strcmp(attribute->name, ATTR_project)==0)
+			opt="P";	
 		else
 			return ;
 

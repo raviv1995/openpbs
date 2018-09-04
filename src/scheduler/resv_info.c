@@ -710,6 +710,8 @@ query_resv(struct batch_status *resv, server_info *sinfo)
 		}
 		else if (!strcmp(attrp->name, ATTR_resv_count))
 			advresv->resv->count = atoi(attrp->value);
+		else if (!strcmp(attrp->name, ATTR_project))
+			advresv->resv->project = attrp->value;
 		attrp = attrp->next;
 	}
 	/* If reservation is unconfirmed and the number of occurrences is 0 then flag
