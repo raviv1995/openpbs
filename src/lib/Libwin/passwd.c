@@ -2411,12 +2411,19 @@ default_local_homedir(char *username, HANDLE usertoken, int ret_profile_path)
 	profilepath[0] = '\0';
 	if (GetUserProfileDirectory(userlogin, profilepath,
 		&profsz) == 0) {
-		if (LoadUserProfile(userlogin, &pi) == 0)
+		log_err(-1, __func__, "GetUserProfileDirectory Failed, retrying");
+		log_eventf(PBSEVENT_ERROR, PBS_EVENTCLASS_SERVER, 
+			LOG_ERR, __func__, "Loading user profile now");
+		if (LoadUserProfile(userlogin, &pi) == 0) {
+			log_err(-1, __func__, "LoadUserProfile Failed");
 			goto default_local_homedir_end;
+		}
 
 		if (GetUserProfileDirectory(userlogin, profilepath,
-			&profsz) == 0)
+			&profsz) == 0) {
+			log_err(-1, __func__, "GetUserProfileDirectory Failed");
 			goto default_local_homedir_end;
+		}
 	}
 
 	if (ret_profile_path) {
