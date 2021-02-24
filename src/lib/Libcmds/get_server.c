@@ -155,6 +155,8 @@ get_server(char *job_id_in, char *job_id_out, char *server_out)
 			if (strcasecmp(parent_server, pbs_conf.pbs_server_name) == 0) {
 				strcat(job_id_out, ".");
 				strcat(job_id_out, pbs_conf.pbs_server_name);
+				if (server_out[0] == '\0')
+					strcpy(server_out, parent_server);
 				free(parent_server);
 				return 0;
 			}
